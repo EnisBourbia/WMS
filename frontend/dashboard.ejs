@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>WMS - Dashboard</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/navbar.css">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+  <body>
+    <%- include('reuse/navbar') %>
+
+
+    <div class="chart-container col-xl-8 col-md-8 sm-5">
+        <canvas id="myChart"></canvas>
+    </div>
+  </div>
+  </div>
+    <script type="text/javascript">
+    const api_url =
+    "/api/warehouse_volume/";
+    // Defining async function
+
+
+    async function getapi(url) {
+
+      // Storing response
+      const response = await fetch(url);
+      let data = await response.json();
+      await displayGraph(data);
+
+      // Storing data in form of JSON
+    //   await displayGraph(data);
+}
+  async function displayGraph(data) {
+    // Calling that async function
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
+
+      // The data for our dataset
+      data: {
+        labels: [data[6].warehouse_date.slice(0,10), data[5].warehouse_date.slice(0,10), data[4].warehouse_date.slice(0,10) ,data[3].warehouse_date.slice(0,10),
+          data[2].warehouse_date.slice(0,10), data[1].warehouse_date.slice(0,10), data[0].warehouse_date.slice(0,10)],
+        datasets: [{
+          label: 'Lagervolym',
+          backgroundColor: 'rgb(94, 149, 212)',
+          borderColor: 'rgb(94, 149, 212)',
+          data: [data[6].warehouse_volume, data[5].warehouse_volume, data[4].warehouse_volume, data[3].warehouse_volume,
+           data[2].warehouse_volume, data[1].warehouse_volume, data[0].warehouse_volume],
+        }]
+      },
+
+      // Configuration options go here
+      options: {}
+    });
+
+  }
+getapi(api_url);
+    </script>
+            <script src="js/menu.js"></script>
+            <script src="js/qr.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

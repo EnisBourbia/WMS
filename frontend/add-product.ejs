@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>WMS - Dashboard</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/navbar.css">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+  <body>
+    <%- include('reuse/navbar') %>
+
+
+
+          <div class="label-creation-form col-xl-9 col-md-8">
+              <form class="">
+                <h5>Select item to create</h5>
+                <select id="select-label-form" class="" name="" onchange="changeForm();">
+                  <option value="">Label type...</option>
+                  <option value="product">Product</option>
+                  <option value="warehouse" >Warehouse Location</option>
+                </select>
+              </form>
+
+              <form id="product-label-form" class="label-form" action="/api/products/add" method="post">
+                <h3>Product info</h3>
+                <input type="text" id="prod-name" name="prod_name" value="" placeholder="Product name" onkeyup="loadPreviewProduct();"><br>
+
+                <input type="text" id="shelf-location" name="shelf_location" value="" placeholder="Shelf location (e.g. A11)" onkeyup="loadPreviewProduct();"><br>
+                <!--<input type="text" id="row-product" name="row-product" value="" placeholder="Row location (e.g. 7)" onkeyup="loadPreviewProduct();"><br> -->
+
+                <input id="auto-id-checkbox-product" type="checkbox" name="auto_id" onclick="autoIdProduct();" checked> <label for="auto-id">Generate unique id</label><br>
+                <input id="id-input-product" type="number" name="prod_label" placeholder="Label id" onkeyup="loadPreviewProduct();"><br>
+                <input id="sku" type="text" name="prod_sku" placeholder="Product SKU" onkeyup="loadPreviewProduct();"><br>
+                <input type="number" id="stock-amount" name="stock_amount" value="" placeholder="Stock Amount" onkeyup="loadPreviewProduct();"><br>
+
+                <button type="submit" name="submit">Save product</button>
+              </form>
+
+              <form id="warhouse-label-form" class="label-form" action="" method="post">
+                <h3>Warehouse label</h3>
+                <input type="text" id="shelf" name="shelf" value="" placeholder="Shelf location (e.g. A11)" onkeyup="loadPreview();"><br>
+                <input type="text" id="row" name="row" value="" placeholder="Row location (e.g. 7)" onkeyup="loadPreview();"><br>
+
+                <input id="auto-id-checkbox" type="checkbox" name="auto-id" value="" onclick="autoId();"> <label for="auto-id">Generate unique id</label><br>
+                <input id="id-input-warehouse" type="text" name="id" placeholder="Label id" onchange="loadPreviewProduct();"><br>
+                <button type="button" name="button">Save label</button>
+              </form>
+
+              <h5 class="label-preview-header">Label preview</h5>
+              <div id="label-preview" class="label-preview">
+
+                <script type="text/javascript">
+                  const shelf = document.getElementById('shelf-location');
+                  const row = document.getElementById('prod-name');
+                  const id = document.getElementById('id-input-product');
+                  function loadPreviewProduct() {
+
+                    value = '"' + id.value + '"';
+                    document.getElementById('label-title').innerHTML = "" + id.value + " Loc: " + shelf.value + " Name: " + row.value;
+                  //  document.getElementById('qr-code').innerHTML = `{% qr_from_text "${value}" size="t" image_format="png" error_correction="L" %}`;
+                    var typeNumber = 10;
+                    var errorCorrectionLevel = 'L';
+                    var qr = qrcode(typeNumber, errorCorrectionLevel);
+                    qr.addData(id.value);
+                    qr.make();
+                    document.getElementById('qr-code').innerHTML = qr.createImgTag();
+                  }
+
+
+
+                </script>
+                <h5 id="label-title"> Loc:  Row:  </h5>
+                <div id="qr-code">
+
+                </div>
+                <p>Created: <script>
+                var today = new Date();
+                  var dd = String(today.getDate()).padStart(2, '0');
+                  var mm = String(today.getMonth() + 1).padStart(2, '0');
+                  var yyyy = today.getFullYear();
+
+                  today = mm + '/' + dd + '/' + yyyy;
+                  document.write(today);
+                </script></p>
+              </div>
+            </div>
+            </div>
+          </div>
+            <script src="../js/menu.js"></script>
+            <script src="../js/qr.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

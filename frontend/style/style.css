@@ -1,0 +1,178 @@
+html, body  {
+  height: 100%!important;
+  overflow-x: hidden;
+}
+
+
+
+
+#sidebar {
+  background-color: black!important;
+  position: relative;
+  width: 300px;
+  min-height: 100%;
+}
+
+.chart-container {
+  width: 100%;
+  margin: auto;
+}
+
+
+.label-creation-form {
+  position: relative;
+  text-align: center;
+  height: 60%;
+  width:100%;
+  margin: 230px auto 0px auto;
+}
+
+#auto-id-checkbox-product, #auto-id-checkbox-warehouse {
+  width: auto!important;
+}
+
+.label-creation-form input {
+  padding: 5px;
+  margin: 3px;
+  width: 300px;
+}
+
+#select-label-form {
+  padding: 9px;
+
+}
+
+.label-form {
+  display: none;
+  margin-top: 20px;
+}
+
+.label-creation-form button {
+  background-color: #FF5900;
+  color: white;
+  border: none;
+  padding: 8px;
+  margin-top: 3px;
+}
+
+.label-creation-form button:hover {
+  background-color: #F39A6A;
+}
+
+.label-preview {
+  margin: 10px auto 0px auto;
+  border: 2.5px solid black;
+  width: 400px;
+  height: 260px;
+  text-align: center;
+}
+
+.label-creation-form h5 {
+  margin-top: 20px;
+}
+
+.label-preview p {
+  float: right;
+  padding-right: 5px;
+}
+
+@keyframes breath {
+  from {stroke:#a7fa64;}
+  to {stroke:#ce00fc;}
+}
+
+.products-table {
+  padding-top: 200px;
+  max-width: auto!important;
+  min-width: auto!important;
+  margin: 0px auto 0px auto;
+
+}
+
+.products-table table {
+  width: 100%;
+
+}
+
+.products-table th {
+  padding: 0px 20px 0px 20px;
+  color: white;
+  background-color: #e08300;
+  height: 40px;
+
+}
+
+.products-table td {
+  padding: 0px 20px 0px 20px;
+  height: 40px;
+}
+
+.products-table table tr:nth-child(odd) td{
+    background-color:#e6e3e3;
+}
+
+.products-table table tr:nth-child(odd):hover td{
+  background-color:#b8b8b8;
+}
+
+.products-table table tr:hover{
+    background-color:#b8b8b8;
+}
+
+.settings-button {
+  color: black;
+}
+
+.label-form-edit {
+  width: 100%;
+  margin: 200px auto 0px auto;
+  text-align: center;
+}
+
+.label-form-edit input, select {
+  padding: 5px;
+  margin: 3px;
+  width: 300px;
+}
+
+
+.label-form-edit button {
+  background-color: #FF5900;
+  color: white;
+  border: none;
+  padding: 8px;
+  margin-top: 3px;
+}
+
+.label-form-edit button:hover {
+  background-color: #F39A6A;
+}
+
+#id-input-product-edit {
+  color: grey;
+  cursor: default;
+}
+
+.label-preview-edit {
+  margin-top: 30px;
+  position: relative;
+  right: 20px;
+}
+
+#qr-code {
+  padding-top: 20px;
+}
+
+
+.table-controlls {
+  float: right;
+  padding: 5px;
+}
+
+.label-preview {
+  margin-bottom: 50px;
+}
+
+.label-preview,.label-preview-header {
+  display: none;
+}

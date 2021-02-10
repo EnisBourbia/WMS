@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container-fluid" style="min-height:100%!important;height:100%;">
+<div class="row" style="min-height:100%!important;">
+          <nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+				<div class="p-4 pt-5">
+	        <ul class="list-unstyled components mb-5">
+	          <li class="active">
+	            <a href="#overviewSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Overview <i class="fas fa-warehouse"></i></a>
+	            <ul class="collapse list-unstyled" id="overviewSubmenu">
+                <li>
+                    <a href="/">Overview</a>
+                </li>
+                <li>
+                    <a href="/products">Products</a>
+                </li>
+                <li>
+                    <a href="/products/add">Add products</a>
+                </li>
+                <li>
+                    <a href="#">Warehouse status</a>
+                </li>
+	            </ul>
+	          </li>
+	          <li>
+              <a href="#labelsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Labels <i class="fas fa-tags"></i></a>
+              <ul class="collapse list-unstyled" id="labelsSubmenu">
+                <li>
+                    <a href="#">Create/modify labels</a>
+                </li>
+                <li>
+                    <a href="#">Label overview</a>
+                </li>
+              </ul>
+	          </li>
+	          <li>
+              <a href="#transportsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Transports <i class="fas fa-dolly"></i></a>
+              <ul class="collapse list-unstyled" id="transportsSubmenu">
+                <li>
+                    <a href="#">Transport overview</a>
+                </li>
+                <li>
+                    <a href="#">Manage transports</a>
+                </li>
+              </ul>
+	          </li>
+            <li>
+              <a href="#shipmentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Shipments <i class="fas fa-shipping-fast"></i></a>
+              <ul class="collapse list-unstyled" id="shipmentsSubmenu">
+                <li>
+                    <a href="shipments/">Shipments overview</a>
+                </li>
+              </ul>
+	          </li>
+            <li>
+              <a href="#settingsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Settings <i class="fas fa-cogs"></i></a>
+              <ul class="collapse list-unstyled" id="settingsSubmenu">
+                <li>
+                    <a href="#">Account</a>
+                </li>
+              </ul>
+            </li>
+	        </ul>
+
+	        <div class="mb-5">
+
+	            <div class="form-group d-flex">
+	            	<div class="icon"><span class="icon-paper-plane"></span></div>
+	            </div>
+					</div>
+
+	        <div class="footer">
+
+	        </div>
+
+	      </div>
+    	</nav>

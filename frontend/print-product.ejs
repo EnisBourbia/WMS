@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/navbar.css">
+
+  </head>
+  <body>
+    <form id="product-label-form" class="label-form-edit" action="/api/products/update" method="post " hidden>
+      <h3>Edit Product</h3>
+      <input type="text" id="prod-name" name="prod_name" value="" placeholder="Product name" onkeyup="loadPreviewProduct();"><br>
+
+      <input type="text" id="shelf-location" name="shelf_location" value="" placeholder="Shelf location (e.g. A11)" onkeyup="loadPreviewProduct();"><br><br>
+      <!--<input type="text" id="row-product" name="row-product" value="" placeholder="Row location (e.g. 7)" onkeyup="loadPreviewProduct();"><br> -->
+
+      <input id="id-input-product-edit" type="number" name="prod_label" placeholder="Label id" readonly ><br>
+      <input id="prod-sku" type="text" name="prod_sku" placeholder="Product SKU" onkeyup="loadPreviewProduct();"><br>
+      <input type="number" id="stock-amount" name="stock_amount" value="" placeholder="Stock Amount" onkeyup="loadPreviewProduct();"><br>
+    </form>
+    <div id="label-preview" class="label-preview label-preview-edit">
+      <script type="text/javascript">
+        const shelf = document.getElementById('shelf-location');
+        const row = document.getElementById('prod-name');
+        const id = document.getElementById('id-input-product-edit');
+        function loadPreviewProduct() {
+          value = '"' + id.value + '"';
+          document.getElementById('label-title').innerHTML = "" + id.value + " Loc: " + shelf.value + " Name: " + row.value;
+        //  document.getElementById('qr-code').innerHTML = `{% qr_from_text "${value}" size="t" image_format="png" error_correction="L" %}`;
+          var typeNumber = 10;
+          var errorCorrectionLevel = 'L';
+          var qr = qrcode(typeNumber, errorCorrectionLevel);
+          qr.addData(id.value);
+          qr.make();
+          document.getElementById('qr-code').innerHTML = qr.createImgTag();
+        }
+
+
+
+      </script>
+      <h5 id="label-title" style="font-size:22px"> Loc:  Row:  </h5>
+      <div id="qr-code" style="position: relative;bottom: 30px;">
+
+      </div>
+      <p style="display:inline-block;position: relative;bottom: 30px;">Created: <script>
+      var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+        document.write(today);
+
+        const url_header = window.location.pathname;
+        let url_id = url_header.substring(15);
+        const api_url = "../../api/products" + url_id;
+        async function getapi(url) {
+
+          // Storing response
+          const response = await fetch(url);
+          let data = await response.json();
+          await displayForm(data);
+
+          // Storing data in form of JSON
+        //   await displayGraph(data);
+        }
+        async function displayForm(data) {
+          document.getElementById('prod-name').value = data[0].prod_name;
+          document.getElementById('shelf-location').value = data[0].prod_location;
+          document.getElementById('id-input-product-edit').value = data[0].prod_label;
+          document.getElementById('prod-sku').value = data[0].prod_sku;
+          document.getElementById('stock-amount').value = data[0].prod_stock;
+          loadPreviewProduct();
+
+        }
+
+
+        getapi(api_url);
+      </script></p>
+    </div>
+    <script src="../../js/menu.js"></script>
+    <script src="../../js/qr.js"></script>
+  </body>
+</html>
