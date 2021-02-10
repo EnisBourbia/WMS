@@ -4,7 +4,7 @@
 Built in Nodejs using Express, EJS and Mysql
 Using Rest Api approach
 
-All Api routes starts with ('api/)
+All Api routes starts with ('api/')
 
 Features:
   * Product Add/Update
